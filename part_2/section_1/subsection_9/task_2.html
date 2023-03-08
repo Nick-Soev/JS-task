@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="elem">elem</div>
+  <script>
+    let elem = document.getElementById('elem');
+    elem.style.overflowY = 'scroll';
+    elem.style.width = '250px';
+    elem.style.height = '250px';
+    let scrollWidth = elem.offsetWidth - elem.clientWidth;
+    console.log(scrollWidth);
+  </script>
+
+</body>
+
+</html>
