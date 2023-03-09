@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrap {
+      border: 1px solid #000;
+      border-radius: 10px;
+      background: #44bee4;
+      position: relative;
+      overflow: hidden;
+      width: 390px;
+      padding: 0 30px;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 40%;
+      padding: 0;
+      background: #ddd;
+      border-radius: 15px;
+      border: 1px solid gray;
+      font-size: 24px;
+      line-height: 24px;
+      color: #444;
+      display: block;
+      z-index: 2;
+    }
+
+    .ar-prev {
+      left: 0;
+    }
+
+    .ar-next {
+      right: 0;
+    }
+
+    .arrow:focus {
+      outline: none;
+    }
+
+    .arrow:hover {
+      background: #ccc;
+      cursor: pointer;
+    }
+
+    ul {
+      height: 130px;
+      width: 9999px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0;
+      z-index: 1;
+    }
+
+    ul img {
+      width: 130px;
+      height: 130px;
+      display: block;
+      /* убираем пустое место вокруг картинок */
+    }
+
+    ul li {
+      display: inline-block;
+      /* убираем пустое место между элементами списка */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+    <button class="arrow ar-prev">⇦</button>
+    <button class="arrow ar-next">⇨</button>
+
+    <ul>
+      <li><img src="https://ru.js.cx/carousel/1.png"></li>
+      <li><img src="https://ru.js.cx/carousel/2.png"></li>
+      <li><img src="https://ru.js.cx/carousel/3.png"></li>
+      <li><img src="https://ru.js.cx/carousel/4.png"></li>
+      <li><img src="https://ru.js.cx/carousel/5.png"></li>
+      <li><img src="https://ru.js.cx/carousel/6.png"></li>
+      <li><img src="https://ru.js.cx/carousel/7.png"></li>
+      <li><img src="https://ru.js.cx/carousel/8.png"></li>
+      <li><img src="https://ru.js.cx/carousel/9.png"></li>
+      <li><img src="https://ru.js.cx/carousel/10.png"></li>
+    </ul>
+  </div>
+
+  <script>
+    const carousel = document.querySelector('.wrap');
+    let i = 1;
+    for (let li of carousel.querySelectorAll('li')) {
+      li.style.position = 'relative';
+      li.insertAdjacentHTML('beforeend', `<span style="position:absolute;left:0;top:0">${i}</span>`);
+      i++;
+    }
+    let width = 130;
+    let count = 3;
+    let list = carousel.querySelector('ul');
+    let listElems = carousel.querySelectorAll('li');
+    let position = 0;
+    carousel.querySelector('.ar-prev').onclick = function () {
+      position += width * count;
+      position = Math.min(position, 0)
+      list.style.marginLeft = position + 'px';
+    };
+    carousel.querySelector('.ar-next').onclick = function () {
+      position -= width * count;
+      position = Math.max(position, -width * (listElems.length - count));
+      list.style.marginLeft = position + 'px';
+    };
+  </script>
+
+</body>
+
+</html>

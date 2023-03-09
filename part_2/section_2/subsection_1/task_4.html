@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <p style="cursor: pointer; display: inline;" id="btn">Сладости (нажми меня)!</p>
+  <ul style="display: none;">
+    <li>Пирожное</li>
+    <li>Пончик</li>
+    <li>Мёд</li>
+  </ul>
+  <script>
+
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', function () {
+
+      if (this.nextElementSibling.style.display == 'block') {
+        this.nextElementSibling.style.display = 'none';
+      } else {
+        this.nextElementSibling.style.display = 'block';
+      }
+    })
+  </script>
+</body>
+
+</html>

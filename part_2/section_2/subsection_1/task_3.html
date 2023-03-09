@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #field {
+      cursor: pointer;
+      position: relative;
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      overflow: hidden;
+    }
+
+    #ball {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: none;
+      transition: all .3s ease;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Нажмите на поле для перемещения мяча.
+  <br> Мяч не должен выходить за границы поля.
+
+
+  <div id="field">
+    <img width="40px" height="40px" src="https://ru.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+  <script>
+    const field = document.getElementById('field');
+    const ball = document.getElementById('ball');
+
+    field.addEventListener('click', function (e) {
+      if ((e.clientX - this.offsetLeft - this.clientLeft - ball.offsetWidth / 2) < 0) {
+        ball.style.left = 0;
+      } else if ((e.clientX + ball.offsetLeft / 2) >
+        (this.offsetLeft + this.clientWidth + this.clientLeft)) {
+        console.log('123');
+
+        ball.style.left = this.clientWidth - ball.clientWidth + 'px';
+      } else {
+        ball.style.left = e.clientX - this.offsetLeft - this.clientLeft - ball.offsetWidth / 2 + 'px';
+      }
+
+
+      if ((ball.style.top = e.clientY - this.offsetTop - this.clientTop - ball.offsetHeight / 2) < 0) {
+        ball.style.top = 0;
+      } else if ((e.clientY + ball.offsetHeight / 2) >
+        (this.offsetTop + this.clientHeight + this.clientTop)) {
+        ball.style.top = this.clientHeight - ball.clientHeight + 'px';
+      } else { ball.style.top = e.clientY - this.offsetTop - this.clientTop - ball.offsetHeight / 2 + 'px'; }
+
+
+
+
+
+    })
+
+
+  </script>
+
+</body>
+
+</html>
