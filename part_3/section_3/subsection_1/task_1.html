@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch</title>
+</head>
+
+<body>
+
+  <script>
+    async function getUsers(names) {
+      let users = [];
+      names.forEach(name => {
+        let user = fetch(`https://api.github.com/users/${name}`)
+          .then(response => {
+            if (response.status != 200) {
+              return null;
+            } else {
+              return response.json();
+            }
+          },
+            failResponse => {
+              return null;
+            })
+        users.push(user);
+      });
+      console.log(users);
+      let res = await Promise.all(users);
+      return res;
+    }
+    getUsers(['0', '1', '2', 'ofusw83jhd', '4']);
+
+  </script>
+</body>
+
+</html>
